@@ -42,7 +42,8 @@ En este caso tienes varias opciones para poder descargar el .jar del proyecto.
 >
 > **NOTA: Puede que algunos enlaces tengan versiones desactualizadas, la opción 1 es la confiable.**
 
-Luego de descargar el .jar por medio de alguno de los métodos anteriores simplemente queda ejecutarlo y ya podrás utilizarlo.
+Luego de descargar el .jar por medio de alguno de los métodos anteriores simplemente queda ejecutarlo en una consola con el comando `java -jar .\SistemaVotacionUMG.jar`y ya podrás utilizarlo.
+
 ## ¿Cómo colaborar o utilizar el código?
 Si deseas colaborar o utilizar este código para fines educativos, deberás seguir las siguientes reglas:
 
