@@ -34,9 +34,9 @@ Si deseas probar este proyecto en tu computadora deberás de hacer lo siguiente:
 
 ### Descargar el .JAR
 En este caso tienes varias opciones para poder descargar el .jar del proyecto.
-> Opción 1: Clonar el repositorio y ejecutar el archivo SistemaVotacionUMG_VersionXX.jar
+> Opción 1: Clonar el repositorio y ejecutar el archivo SistemaVotacionUMG.jar por medio de consola.
 >
-> Opción 2: Descargarlo por medio del siguiente enlace [https://estuardo.dev/descargar/BuldJarAlgorimos](https://estuardo.dev/descargar/BuldJarAlgorimos)
+> Opción 2: Descargarlo por medio del siguiente enlace [https://estuardo.dev/descargar/BuildJarAlgoritmos](https://estuardo.dev/descargar/BuldJarAlgorimos)
 > 
 > Opción 3: Descargarlo por medio de los releases [https://github.com/estuardodev/ProyectoAlgoritmosUMG/releases/](https://github.com/estuardodev/ProyectoAlgoritmosUMG/releases/)
 >

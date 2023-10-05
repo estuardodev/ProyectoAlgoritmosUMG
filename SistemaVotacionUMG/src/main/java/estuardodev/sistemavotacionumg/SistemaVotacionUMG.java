@@ -42,6 +42,7 @@ public class SistemaVotacionUMG {
 
         Utilidades.Limpiar();
         System.out.println("Sistema de Votaciones");
+
         boolean verificar = sv.primeraVez();
         if (verificar){
             sv.admin();
