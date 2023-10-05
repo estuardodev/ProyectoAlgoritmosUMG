@@ -17,7 +17,7 @@ import java.util.Scanner;
 /**
  *
  * @author Estuardo
- * @version 0.2
+ * @version 0.3
  * @see https://github.com/estuardodev/ProyectoAlgoritmosUMG.git
  */
 public class Candidatos {
@@ -180,7 +180,7 @@ public class Candidatos {
 
             // Lee el archivo y muestra las elecciones
             while ((linea = bufferedReader.readLine()) != null) {
-                String[] partes = linea.split(",");
+                String[] partes = linea.split("/");
                 lista.add(partes[0]); // Agrega el código al lista para referencia
                 System.out.println("Código: " + partes[0] + ", Título: " + partes[1]);
             }
