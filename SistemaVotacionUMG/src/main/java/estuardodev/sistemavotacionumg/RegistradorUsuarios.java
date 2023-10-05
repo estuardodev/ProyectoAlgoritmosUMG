@@ -8,7 +8,7 @@ import static estuardodev.sistemavotacionumg.Administrador.HomeAdmin;
 /**
  *
  * @author Estuardo
- * @version 1.0
+ * @version 0.2
  * @see https://github.com/estuardodev/ProyectoAlgoritmosUMG.git
  */
 public class RegistradorUsuarios {

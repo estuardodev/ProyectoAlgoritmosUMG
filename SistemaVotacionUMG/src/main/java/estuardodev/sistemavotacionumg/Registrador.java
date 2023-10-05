@@ -10,7 +10,7 @@ import java.util.Scanner;
 /**
  *
  * @author Estuardo
- * @version 1.0
+ * @version 0.2
  * @see https://github.com/estuardodev/ProyectoAlgoritmosUMG.git
  */
 public class Registrador {

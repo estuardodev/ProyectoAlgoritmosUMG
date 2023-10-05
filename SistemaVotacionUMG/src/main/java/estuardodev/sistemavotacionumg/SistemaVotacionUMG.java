@@ -10,12 +10,15 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import estuardodev.sistemavotacionumg.Utilidades;
 
 /**
  *
  * @author Estuardo
- * @version 1.0
+ * @version 0.2.0
  * @see https://github.com/estuardodev/ProyectoAlgoritmosUMG.git
  */
 public class SistemaVotacionUMG {
@@ -41,8 +44,7 @@ public class SistemaVotacionUMG {
         SistemaVotacionUMG sv = new SistemaVotacionUMG();
 
         Utilidades.Limpiar();
-        System.out.println("Sistema de Votaciones");
-
+        System.out.println("-- Sistema de Votaciones --");
         boolean verificar = sv.primeraVez();
         if (verificar){
             sv.admin();
@@ -55,6 +57,7 @@ public class SistemaVotacionUMG {
     public boolean primeraVez(){
         try{
             File file = new File(INIT);
+            File admin = new File(ADMIN);
             File file2 = new File(USERS);
             File file3 = new File(REGISTRARS);
             File file4 = new File(AUDITORS);
@@ -89,8 +92,12 @@ public class SistemaVotacionUMG {
                 }
 
             }else{
+                if (!admin.exists()){
+                    return true;
+                }
                 return false;
             }
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -101,18 +108,22 @@ public class SistemaVotacionUMG {
         File file = new File(ADMIN);
         try{
             if(!file.exists()){
-                file.createNewFile();
-
                 FileWriter fw = new FileWriter(file);
                 BufferedWriter bw = new BufferedWriter(fw);
                 Scanner scan = new Scanner(System.in);
                 System.out.println("POR SER LA PRIMERA VEZ QUE SE INICIA EL PROGRAMA NECESITAMOS QUE INGRESES UNA CONTRASEÑA DE ADMINISTRADOR:");
 
                 String password = "";
-                while (password.isEmpty()){
-                    System.out.print("INGRESA UNA CONTRASEÑA SEGURA: ");
+                String regex = "^(?=.*[0-9])(?=.*[a-zA-Z]).*$";
+
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(password);
+
+                while (password.length() < 4 || !(matcher = pattern.matcher(password)).matches()){
+                    System.out.print("INGRESA UNA CONTRASEÑA SEGURA\n- 4 Mínimo Caracteres\n- Mínimo 1 letra\n- Mínimo 1 número\n\n Ingrese la contraseña: ");
                     password = scan.next();
                 }
+                file.createNewFile();
                 bw.write("USER: admin\nPASSWORD: " + password);
                 bw.close();
                 System.out.println("ESTA CONTRASEÑA ES INMUTABLE, NUNCA LA COMPARTAS CON NADIE");  

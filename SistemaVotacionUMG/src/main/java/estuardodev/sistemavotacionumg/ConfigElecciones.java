@@ -12,7 +12,7 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 /**
  *
  * @author Estuardo
- * @version 1.0
+ * @version 0.2
  * @see https://github.com/estuardodev/ProyectoAlgoritmosUMG.git
  */
 public class ConfigElecciones {
