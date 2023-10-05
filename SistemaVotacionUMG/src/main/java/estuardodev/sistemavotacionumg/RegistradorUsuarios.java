@@ -200,6 +200,11 @@ public class RegistradorUsuarios {
                 "[F] Femenino ");
         genero = scanner.next();
         genero.toLowerCase();
+        if (genero.isBlank()){
+            System.out.println("No puedes dejarlo sin genero.");
+            Utilidades.Sleep(3);
+            Registrador.HomeRegistrador();
+        }
 
         System.out.println("Ingresa la edad: ");
         edad = scanner.nextInt();

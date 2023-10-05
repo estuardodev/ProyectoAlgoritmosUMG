@@ -18,7 +18,7 @@ import estuardodev.sistemavotacionumg.Utilidades;
 /**
  *
  * @author Estuardo
- * @version 0.3
+ * @version 0.4
  * @see https://github.com/estuardodev/ProyectoAlgoritmosUMG.git
  */
 public class SistemaVotacionUMG {
@@ -107,29 +107,32 @@ public class SistemaVotacionUMG {
     public static void admin(){
         File file = new File(ADMIN);
         try{
-            if(!file.exists()){
-                FileWriter fw = new FileWriter(file);
-                BufferedWriter bw = new BufferedWriter(fw);
+            if (!file.exists()) {
                 Scanner scan = new Scanner(System.in);
-                System.out.println("POR SER LA PRIMERA VEZ QUE SE INICIA EL PROGRAMA NECESITAMOS QUE INGRESES UNA CONTRASEÑA DE ADMINISTRADOR:");
 
                 String password = "";
-                String regex = "^(?=.*[0-9])(?=.*[a-zA-Z]).*$";
+                Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-zA-Z]).{4,}$"); // Mínimo 4 caracteres
 
-                Pattern pattern = Pattern.compile(regex);
-                Matcher matcher = pattern.matcher(password);
-
-                while (password.length() < 4 || !(matcher = pattern.matcher(password)).matches()){
-                    System.out.print("INGRESA UNA CONTRASEÑA SEGURA\n- 4 Mínimo Caracteres\n- Mínimo 1 letra\n- Mínimo 1 número\n\n Ingrese la contraseña: ");
+                while (password.length() < 4 || !pattern.matcher(password).matches()) {
+                    Utilidades.Limpiar();
+                    System.out.println("-- Sistema de Votación --");
+                    System.out.println("POR SER LA PRIMERA VEZ QUE SE INICIA EL PROGRAMA NECESITAMOS QUE INGRESES UNA CONTRASEÑA DE ADMINISTRADOR:");
+                    System.out.print("INGRESA UNA CONTRASEÑA SEGURA\n- Mínimo 4 Caracteres\n- Mínimo 1 letra\n- Mínimo 1 número\n\n Ingrese la contraseña: ");
                     password = scan.next();
                 }
-                file.createNewFile();
-                bw.write("USER: admin\nPASSWORD: " + password);
-                bw.close();
-                System.out.println("ESTA CONTRASEÑA ES INMUTABLE, NUNCA LA COMPARTAS CON NADIE");  
-                Utilidades.Sleep(5);
-                Utilidades.Limpiar();
-                Home.Home();
+
+                if (password.length() >= 4 && pattern.matcher(password).matches()) {
+                    FileWriter fw = new FileWriter(file);
+                    BufferedWriter bw = new BufferedWriter(fw);
+
+                    bw.write("USER: admin\nPASSWORD: " + password);
+                    bw.close();
+
+                    System.out.println("ESTA CONTRASEÑA ES INMUTABLE, NUNCA LA COMPARTAS CON NADIE");
+                    Utilidades.Sleep(5);
+                    Utilidades.Limpiar();
+                    Home.Home();
+                }
             }
         }catch (Exception e){
             e.printStackTrace();

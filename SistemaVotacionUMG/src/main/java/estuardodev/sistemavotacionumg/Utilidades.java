@@ -9,7 +9,6 @@ import java.util.*;
 /**
  *
  * @author Estuardo
- * @version 0.3
  * @see https://github.com/estuardodev/ProyectoAlgoritmosUMG.git
  */
 public class Utilidades {

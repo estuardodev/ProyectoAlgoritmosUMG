@@ -17,7 +17,6 @@ import java.util.Scanner;
 /**
  *
  * @author Estuardo
- * @version 0.3
  * @see https://github.com/estuardodev/ProyectoAlgoritmosUMG.git
  */
 public class Candidatos {
@@ -68,7 +67,19 @@ public class Candidatos {
         formacion = scan.nextLine();
         System.out.println("Experiencia del Candidato: ");
         experiencia = scan.nextLine();
-        
+
+        if (experiencia.isBlank()){
+            experiencia = "No hay información.";
+        }
+        if (formacion.isBlank()) {
+            formacion = "No hay información.";
+        }
+        if (nombre.isBlank()) {
+            System.out.println("El nombre no puede estar vacío.");
+            Utilidades.Sleep(2);
+            HomeAdmin();
+        }
+
         try {
             
             FileOutputStream fos = new FileOutputStream(file, true);

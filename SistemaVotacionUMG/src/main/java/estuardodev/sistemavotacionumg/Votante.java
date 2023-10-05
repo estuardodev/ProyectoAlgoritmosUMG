@@ -12,7 +12,6 @@ import java.util.Scanner;
 /**
  *
  * @author Estuardo
- * @version 0.3
  * @see https://github.com/estuardodev/ProyectoAlgoritmosUMG.git
  */
 public class Votante {
@@ -83,6 +82,10 @@ public class Votante {
 
                     if (Registrador.cumpleCondicionesDeFecha(datosE[6], datosE[7]) && datosU[7].contains(datosE[0])) {
                         System.out.println("Código: " + datosE[0] + ", Título: " + datosE[1]);
+                    }else{
+                        System.out.println("No tienes elecciones asignadas");
+                        Utilidades.Sleep(4);
+                        Home.Home();
                     }
                 }
 
