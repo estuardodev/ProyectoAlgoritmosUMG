@@ -10,7 +10,7 @@ public class VotanteRegistros {
     private static final String REGISTRO_VOTOS = SistemaVotacionUMG.REGISTRO_VOTOS;
     private static final String USERS = SistemaVotacionUMG.USERS;
 
-    public static void RegistroVotos(String codigo, String votante) {
+    public static void RegistroVotos(String codigo, String votante, String codigo_candidato) {
 
         File file = new File(REGISTRO_VOTOS);
         File file2 = new File(USERS);
@@ -34,12 +34,12 @@ public class VotanteRegistros {
             }
 
             // Verifica si ya existe un registro para el código de elección
-            if (existeRegistro(file, codigo)) {
+            if (existeRegistro(file, codigo, codigo_candidato)) {
                 // Si existe, agrega la nueva información al registro existente
-                agregarInformacion(file, codigo, edad, genero);
+                agregarInformacion(file, codigo, edad, genero, codigo_candidato);
             } else {
                 // Si no existe, crea un nuevo registro
-                crearNuevoRegistro(file, codigo, edad, genero);
+                crearNuevoRegistro(file, codigo, edad, genero, codigo_candidato);
             }
 
         } catch (Exception e) {
@@ -47,14 +47,14 @@ public class VotanteRegistros {
         }
     }
 
-    private static boolean existeRegistro(File file, String codigo) throws IOException {
+    private static boolean existeRegistro(File file, String codigo, String codigo_candidato) throws IOException {
         FileReader fr = new FileReader(file);
         BufferedReader reader = new BufferedReader(fr);
         String currentLine;
 
         // Verifica si ya existe un registro para el código de elección
         while ((currentLine = reader.readLine()) != null) {
-            if (currentLine.startsWith(codigo + "/")) {
+            if (currentLine.startsWith(codigo + "/") && currentLine.endsWith("/"+codigo_candidato)) {
                 return true;
             }
         }
@@ -62,7 +62,7 @@ public class VotanteRegistros {
         return false;
     }
 
-    private static void agregarInformacion(File file, String codigo, String edad, String genero) throws IOException {
+    private static void agregarInformacion(File file, String codigo, String edad, String genero, String codigo_candidato) throws IOException {
         // Lee el archivo original
         BufferedReader reader = new BufferedReader(new FileReader(file));
         StringBuilder stringBuilder = new StringBuilder();
@@ -70,7 +70,7 @@ public class VotanteRegistros {
 
         // Lee línea por línea y agrega la nueva información al registro existente
         while ((currentLine = reader.readLine()) != null) {
-            if (currentLine.startsWith(codigo + "/")) {
+            if (currentLine.startsWith(codigo + "/") && currentLine.endsWith("/"+codigo_candidato)) {
                 String[] partes = currentLine.split("/");
 
                 // Extrae las edades y generos actuales
@@ -82,7 +82,7 @@ public class VotanteRegistros {
                 generos += "," + genero;
 
                 // Reconstruye la línea con las nuevas listas de edades y géneros
-                currentLine = String.format("%s/[%s]/[%s]", codigo, edades, generos);
+                currentLine = String.format("%s/[%s]/[%s]/%s", codigo, edades, generos, codigo_candidato);
             }
             stringBuilder.append(currentLine).append("\n");
         }
@@ -94,12 +94,12 @@ public class VotanteRegistros {
         writer.close();
     }
 
-    private static void crearNuevoRegistro(File file, String codigo, String edad, String genero) throws IOException {
+    private static void crearNuevoRegistro(File file, String codigo, String edad, String genero, String codigo_candidato) throws IOException {
         // Crea un nuevo registro
         FileWriter fw = new FileWriter(file, true); // true para añadir al final del archivo
         BufferedWriter bw = new BufferedWriter(fw);
 
-        String nuevoRegistro = String.format("%s/[%s]/[%s]", codigo, edad, genero);
+        String nuevoRegistro = String.format("%s/[%s]/[%s]/%s", codigo, edad, genero, codigo_candidato);
         bw.write(nuevoRegistro);
         bw.newLine();
 

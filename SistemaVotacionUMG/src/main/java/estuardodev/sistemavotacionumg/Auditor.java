@@ -1,6 +1,7 @@
 package estuardodev.sistemavotacionumg;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -136,7 +137,7 @@ public class Auditor {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] partes = line.split("/");
-                if (partes.length == 3 && partes[0].equals(codigo)) {
+                if (partes.length == 4 && partes[0].equals(codigo)) {
                     switch (opcion) {
                         case "1":
                             try (BufferedReader bufferedReadersR = new BufferedReader(new FileReader(RELACION_CANDIDATOS_ELECCION))) {
@@ -189,7 +190,6 @@ public class Auditor {
             int edadInt = Integer.parseInt(edad);
             edadContador.put(edadInt, edadContador.getOrDefault(edadInt, 0) + 1);
         }
-
         System.out.println("Estadísticas por edades para la elección " + partes[0] + ":");
         for (Map.Entry<Integer, Integer> entry : edadContador.entrySet()) {
             System.out.println(entry.getValue() + " votos de personas de " + entry.getKey() + " años.");

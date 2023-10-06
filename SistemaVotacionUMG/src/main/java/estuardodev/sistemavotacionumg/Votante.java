@@ -21,6 +21,8 @@ public class Votante {
     private static final String CANDIDATOS = SistemaVotacionUMG.CANDIDATOS;
 
     static String dpiCodigo = "";
+
+    static String codigo_can = "";
     public static void VerificarVotante(){
         Boolean verificar = LoginVotante();
         if (verificar) {
@@ -55,6 +57,7 @@ public class Votante {
     }
 
     static String codigosss = "";
+    private String codigo_candidatos = "";
 
     public static void HomeVotante() {
         Utilidades.Limpiar();
@@ -72,7 +75,7 @@ public class Votante {
             BufferedReader brU = new BufferedReader(frU);
             String lineaU;
             String[] datosU;
-
+            boolean puede_votar = false;
 
             while ((lineaE = brE.readLine()) != null) {
                 datosE = lineaE.split("/");
@@ -82,14 +85,19 @@ public class Votante {
 
                     if (Registrador.cumpleCondicionesDeFecha(datosE[6], datosE[7]) && datosU[7].contains(datosE[0])) {
                         System.out.println("Código: " + datosE[0] + ", Título: " + datosE[1]);
-                    }else{
-                        System.out.println("No tienes elecciones asignadas");
-                        Utilidades.Sleep(4);
-                        Home.Home();
+                        puede_votar = true;
                     }
                 }
 
+
             }
+            if (!puede_votar) {
+                System.out.println("No tienes elecciones asignadas");
+                Utilidades.Sleep(4);
+                Home.Home();
+            }
+
+
 
             brE.close();
 
@@ -112,6 +120,7 @@ public class Votante {
                 // Solicitar al usuario que elija un candidato
                 System.out.println("Elige el número del candidato para votar: ");
                 opcion = scan.next();
+
 
                 // Realizar el voto
                 realizarVoto(opcion, candidatosDeEleccion, CANDIDATOS_ELECCION);
@@ -188,9 +197,10 @@ public class Votante {
             int indiceCandidato = Integer.parseInt(opcion) - 1;
             if (indiceCandidato >= 0 && indiceCandidato < candidatosDeEleccion.size()) {
                 String codigoCandidato = candidatosDeEleccion.get(indiceCandidato);
+                codigo_can = codigoCandidato;
                 actualizarVotos(codigoCandidato, codigosss,archivo);
                 eliminarEleccionesVotadas(USERS, codigosss);
-                VotanteRegistros.RegistroVotos(codigosss, dpiCodigo);
+                VotanteRegistros.RegistroVotos(codigosss, dpiCodigo, codigo_can);
                 System.out.println("Voto registrado exitosamente.");
                 Utilidades.Sleep(2);
                 System.out.println("Regresando al menu principal.");

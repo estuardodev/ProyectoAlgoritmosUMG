@@ -18,7 +18,7 @@ import estuardodev.sistemavotacionumg.Utilidades;
 /**
  *
  * @author Estuardo
- * @version 0.4
+ * @version 0.5
  * @see https://github.com/estuardodev/ProyectoAlgoritmosUMG.git
  */
 public class SistemaVotacionUMG {
