@@ -44,40 +44,40 @@ public class Registrador {
         return false;
     }
 
-    public static void HomeRegistrador(){
-        Utilidades.Limpiar();
-        System.out.println("-- Sistema de Votación --");
-        System.out.println("[1] Registrar votante ");
-        System.out.println("[2] Editar votante");
-        System.out.println("[3] Reinciar contraseña Votante");
-        System.out.println("[4] Deshabilitar votante");
-        System.out.println("[5] Asignar votaciones a votante");
-        System.out.println("[0] Salir");
-        Scanner scan = new Scanner(System.in);
-        String opcion = scan.next();
-        switch (opcion){
-            case "1":
-                RegistradorUsuarios.RegistradorVotante();
-                break;
-            case "2":
-                RegistradorUsuarios.EditarVotante(USERS);
-                break;
-            case "3":
-                RegistradorUsuarios.ResetearPassword();
-                break;
-            case "4":
-                RegistradorUsuarios.RegistroUsuarioDeshabilitar();
-                break;
-            case "5":
-                AsignarVotacion();
-                break;
-            case "0":
-                Utilidades.Exit();
-                break;
-            default:
-                break;
+        public static void HomeRegistrador(){
+            Utilidades.Limpiar();
+            System.out.println("-- Sistema de Votación --");
+            System.out.println("[1] Registrar votante ");
+            System.out.println("[2] Editar votante");
+            System.out.println("[3] Reinciar contraseña Votante");
+            System.out.println("[4] Deshabilitar votante");
+            System.out.println("[5] Asignar votaciones a votante");
+            System.out.println("[0] Salir");
+            Scanner scan = new Scanner(System.in);
+            String opcion = scan.next();
+            switch (opcion){
+                case "1":
+                    RegistradorUsuarios.RegistradorVotante();
+                    break;
+                case "2":
+                    RegistradorUsuarios.EditarVotante(USERS);
+                    break;
+                case "3":
+                    RegistradorUsuarios.ResetearPassword();
+                    break;
+                case "4":
+                    RegistradorUsuarios.RegistroUsuarioDeshabilitar();
+                    break;
+                case "5":
+                    AsignarVotacion();
+                    break;
+                case "0":
+                    Utilidades.Exit();
+                    break;
+                default:
+                    break;
+            }
         }
-    }
 
     private static void AsignarVotacion(){
         Scanner scanner = new Scanner(System.in);
